@@ -10,12 +10,9 @@ lxml
 httpx
 xmltodict
 PyPDF2
-camelot-py
 pdfminer.six
 indexed-gzip
-fuzzywuzzy
 jellyfish
-metaphone
 rapidfuzz
 yt-dlp
 openai-whisper==20231117

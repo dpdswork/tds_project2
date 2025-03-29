@@ -23,13 +23,10 @@ import ast
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 from urllib.parse import urlencode
-import camelot
 import PyPDF2
 import gzip
 from collections import defaultdict
-from fuzzywuzzy import process
 import jellyfish
-from metaphone import doublemetaphone
 from rapidfuzz import fuzz
 import yt_dlp
 import whisper
