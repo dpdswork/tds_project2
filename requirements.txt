@@ -23,11 +23,3 @@ indexed-gzip
 jellyfish
 rapidfuzz
 python-levenshtein
-
-# Whisper & Media Processing
-openai-whisper==20231117
-ffmpeg-python
-yt-dlp
-
-# Optional: Torch (CPU-only)
-torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu

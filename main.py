@@ -10,7 +10,6 @@ import re
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta, date, timezone
-import hashlib
 import subprocess
 import shutil
 import base64
@@ -28,9 +27,9 @@ import gzip
 from collections import defaultdict
 import jellyfish
 from rapidfuzz import fuzz
-import yt_dlp
-import whisper
-import ffmpeg
+# import yt_dlp
+# import whisper
+# import ffmpeg
 
 load_dotenv()
 AIPROXY_TOKEN = os.getenv("AIPROXY_TOKEN")
@@ -1167,53 +1166,53 @@ def ga5_q8(question, extracted_file):
     
     return {"answer": query}
 
-def ga5_q9(question, extracted_file):
-    default_url = "https://www.youtube.com/watch?v=NRntuOJu4ok"
+# def ga5_q9(question, extracted_file):
+#     default_url = "https://www.youtube.com/watch?v=NRntuOJu4ok"
 
-    # Extract details using regex
-    url_match = re.search(r'(https?://[^\s]+)', question)
-    start_match = re.search(r'between (\d+\.?\d*) and', question)
-    end_match = re.search(r'and (\d+\.?\d*) seconds', question)
+#     # Extract details using regex
+#     url_match = re.search(r'(https?://[^\s]+)', question)
+#     start_match = re.search(r'between (\d+\.?\d*) and', question)
+#     end_match = re.search(r'and (\d+\.?\d*) seconds', question)
 
-    if not (start_match and end_match):
-        return "Failed to extract start and end times."
+#     if not (start_match and end_match):
+#         return "Failed to extract start and end times."
 
-    url = url_match.group(1) if url_match else default_url  # Use default URL if none found
-    start_time = float(start_match.group(1))
-    end_time = float(end_match.group(1))
+#     url = url_match.group(1) if url_match else default_url  # Use default URL if none found
+#     start_time = float(start_match.group(1))
+#     end_time = float(end_match.group(1))
 
-    print(f"Processing video: {url}, Start: {start_time}s, End: {end_time}s")
+#     print(f"Processing video: {url}, Start: {start_time}s, End: {end_time}s")
 
-    # Download audio using yt-dlp
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3'}],
-        'outtmpl': 'audio.%(ext)s'
-    }
+#     # Download audio using yt-dlp
+#     ydl_opts = {
+#         'format': 'bestaudio/best',
+#         'postprocessors': [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3'}],
+#         'outtmpl': 'audio.%(ext)s'
+#     }
 
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info_dict = ydl.extract_info(url, download=True)
-        audio_filename = ydl.prepare_filename(info_dict).replace('.webm', '.mp3')
+#     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+#         info_dict = ydl.extract_info(url, download=True)
+#         audio_filename = ydl.prepare_filename(info_dict).replace('.webm', '.mp3')
 
-    # Define output file for extracted segment
-    segment_file = "segment.mp3"
+#     # Define output file for extracted segment
+#     segment_file = "segment.mp3"
 
-    # Extract segment using ffmpeg-python
-    (
-        ffmpeg
-        .input(audio_filename, ss=start_time, to=end_time)
-        .output(segment_file, format="mp3")
-        .run(overwrite_output=True)
-    )
+#     # Extract segment using ffmpeg-python
+#     (
+#         ffmpeg
+#         .input(audio_filename, ss=start_time, to=end_time)
+#         .output(segment_file, format="mp3")
+#         .run(overwrite_output=True)
+#     )
 
-    # Transcribe using Whisper
-    model = whisper.load_model("base")
-    result = model.transcribe(segment_file)
+#     # Transcribe using Whisper
+#     model = whisper.load_model("base")
+#     result = model.transcribe(segment_file)
 
-    # Cleanup
-    os.remove(segment_file)  # Remove temporary segment file if needed
+#     # Cleanup
+#     os.remove(segment_file)  # Remove temporary segment file if needed
 
-    return {"answer":result["text"]}
+#     return {"answer":result["text"]}
 
     
 
