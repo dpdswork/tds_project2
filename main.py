@@ -1305,7 +1305,7 @@ questions_functions = {
     "What is the total sales value":ga5_q6,
     "a large JSON log file and counts the number of times a specific key":ga5_q7,
     "Write a DuckDB SQL query to find all posts IDs":ga5_q8,
-    "What is the text of the transcript of":ga5_q9,
+    # "What is the text of the transcript of":ga5_q9,
 
 }
 async def extract_file_content(file: UploadFile):
@@ -1362,5 +1362,5 @@ async def ask_question(question: str = Form(..., description="Question text"), f
 # def read_root():
 #     return {"message": "Hello, World!"}
 
-if __name__ == '__main__':
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == '__main__':
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
