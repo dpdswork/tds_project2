@@ -23,3 +23,7 @@ indexed-gzip
 jellyfish
 rapidfuzz
 python-levenshtein
+
+yt-dlp
+openai-whisper
+ffmpeg-python
