@@ -8,6 +8,8 @@ httpx
 beautifulsoup4
 lxml
 xmltodict
+python-dotenv
+python-multipart
 
 # Data Processing
 numpy
@@ -24,6 +26,6 @@ jellyfish
 rapidfuzz
 python-levenshtein
 
-yt-dlp
-openai-whisper
-ffmpeg-python
+# yt-dlp
+# openai-whisper
+# ffmpeg-python
